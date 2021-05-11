@@ -52,6 +52,7 @@ class LoginActivity : AppCompatActivity() {
                         "Logowanie",
                         Toast.LENGTH_LONG
                     ).show()
+                    MainActivity.putExtra("Name","Jacek")
                     startActivity(MainActivity)
                     return@OnKeyListener true
                 } else

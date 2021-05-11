@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
         val btnWZ = binding.btnWZ;
         val loginActivity = Intent(this,LoginActivity::class.java);
         val WZActivity = Intent(this,GridActivity::class.java);
-        this.title = "Pracownik"
-
+        val b = intent.extras
+        this.title = b!!.getString("Name","Username")
 
         btnLogout.setOnClickListener {
                 Toast.makeText(

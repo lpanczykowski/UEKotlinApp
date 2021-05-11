@@ -19,6 +19,8 @@ class GridActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_grid)
+
+
         itemAdapder = ItemAdapter(mutableListOf())
         binding = ActivityGridBinding.inflate(layoutInflater)
         val mainActivity = Intent(this, MainActivity::class.java)
