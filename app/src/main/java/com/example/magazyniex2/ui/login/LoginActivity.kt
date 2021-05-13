@@ -15,12 +15,26 @@ import android.widget.Toast
 import com.example.magazyniex2.databinding.ActivityLoginBinding
 
 import com.example.magazyniex2.R
+import com.example.magazyniex2.model.User
+import com.example.magazyniex2.remote.IApi
+import com.example.magazyniex2.remote.RetroFitClient
 import com.example.magazyniex2.ui.main.MainActivity
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
+    lateinit var iApi: IApi
+    var compositeDisposable = CompositeDisposable();
+
+    override fun onStop() {
+            compositeDisposable.clear()
+            super.onStop()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,29 +56,30 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginResult.observe(this@LoginActivity, Observer {
 
         })
+        iApi = RetroFitClient.getInstance().create(IApi::class.java);
+
+
         this.title="Logowanie"
 
         password.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
-                if (password.text.toString() != "111"){
-                    Toast.makeText(
-                        applicationContext,
-                        "Logowanie",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    val user = User("test","admin123")
+                    compositeDisposable.addAll(iApi.loginUser(user)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread()).
+                        subscribe(
+                            { s->
+
+                            },
+                            {t:Throwable? ->
+
+                            }));
+
                     MainActivity.putExtra("Name","Jacek")
                     startActivity(MainActivity)
                     return@OnKeyListener true
                 } else
-                {
-                    Toast.makeText(
-                        applicationContext,
-                        "Błąd logowania",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    password.text.clear();
-                }
-            }
+
             false
         })
     }
