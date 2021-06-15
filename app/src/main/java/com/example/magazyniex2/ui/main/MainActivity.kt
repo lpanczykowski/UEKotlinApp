@@ -8,12 +8,15 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.magazyniex2.R
+import com.example.magazyniex2.data.Globals
 import com.example.magazyniex2.databinding.ActivityLoginBinding
 import com.example.magazyniex2.databinding.ActivityMainBinding
 import com.example.magazyniex2.ui.gird.GridActivity
 import com.example.magazyniex2.ui.login.LoginActivity
 import com.example.magazyniex2.ui.login.LoginViewModel
 import com.example.magazyniex2.ui.login.LoginViewModelFactory
+import okhttp3.*
+import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,16 +27,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val btnLogout = binding.btnLogout;
         val btnWZ = binding.btnWZ;
+        val btnZZ = binding.btnZZ;
         val loginActivity = Intent(this,LoginActivity::class.java);
-        val WZActivity = Intent(this,GridActivity::class.java);
-        val b = intent.extras
-        this.title = b!!.getString("Name","Username")
-
+        val gridActivity = Intent(this,GridActivity::class.java);
+        this.title="Witaj, " + Globals.Username;
         btnLogout.setOnClickListener {
                 Toast.makeText(
                     applicationContext,
@@ -43,7 +46,12 @@ class MainActivity : AppCompatActivity() {
                 startActivity(loginActivity)
         }
         btnWZ.setOnClickListener {
-            startActivity(WZActivity)
+            gridActivity.putExtra("Type","ZK")
+            startActivity(gridActivity);
+        }
+        btnZZ.setOnClickListener{
+            gridActivity.putExtra("Type","ZZ")
+            startActivity(gridActivity);
         }
     }
 }

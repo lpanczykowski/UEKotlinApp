@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.magazyniex2.R
+import com.example.magazyniex2.data.model.Order
+import com.example.magazyniex2.data.model.SkanItem
 import com.example.magazyniex2.ui.skan.SkanActivity
 import kotlinx.android.synthetic.main.item_grid.view.*
 
-class ItemAdapter(
-    private  val items: MutableList<Item>
-    ):RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
+class OrderAdapter(
+    private  val orders: MutableList<Order>
+    ):RecyclerView.Adapter<OrderAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
 
@@ -31,11 +33,15 @@ class ItemAdapter(
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val curItem = items[position]
-        holder.itemView.apply {
-            tvTitle.text = curItem.title
-            tvPriority.text = curItem.priority.toString()
+        val curItem = orders[position]
+        if (curItem.IsRealized) {
 
+        }else {
+            holder.itemView.apply {
+                tvTitle.text = curItem.Number
+                tvPriority.text = curItem.Priority.toString()
+
+            }
         }
 
         var doubleTap = false
@@ -53,12 +59,24 @@ class ItemAdapter(
             }, 1500)
         }
     }
-    fun addItem(item: Item)
+    fun addItem(order: Order)
     {
-        items.add(item);
+        orders.add(order)
+        notifyItemInserted(orders.size -1)
+    }
+    fun clear()
+    {
+        orders.clear()
     }
 
+    fun remove(orderNumber :String)
+    {
+        val order = orders.find { it.Number == orderNumber }
+        if (order != null){
+        orders.remove(order);
+        notifyItemRemoved(orders.indexOf(order))}
+    }
     override fun getItemCount(): Int {
-        return items.size
+        return orders.size
     }
 }

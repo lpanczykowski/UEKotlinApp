@@ -6,41 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
-    <ImageButton
-        android:id="@+id/btnWZ"
-        android:layout_width="125dp"
-        android:layout_height="113dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.171"
-        app:layout_constraintStart_toStartOf="parent"
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogout"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.846"
-        app:srcCompat="?android:attr/listChoiceIndicatorMultiple" />
+        android:background="@color/teal_200">
 
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="125dp"
-        android:layout_height="113dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.849"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?android:attr/listChoiceIndicatorMultiple" />
+        <TableRow
+            android:background="@color/teal_200"
+            android:padding="5dp">
 
-    <ImageButton
-        android:id="@+id/imageButton6"
-        android:layout_width="125dp"
-        android:layout_height="113dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?android:attr/listChoiceIndicatorMultiple" />
+            <ImageButton
+                android:id="@+id/btnWZ"
+                android:layout_width="100sp"
+                android:layout_height="150sp"
+                android:layout_weight="4"
+                app:srcCompat="@drawable/zk"
+                android:background="@color/white"
+                />
+
+            <ImageButton
+                android:id="@+id/btnZZ"
+                android:layout_width="100sp"
+                android:layout_height="150sp"
+                android:layout_weight="4"
+                app:srcCompat="@drawable/zz"
+                android:background="@color/white"
+               />
+        </TableRow>
+        <TableRow
+        android:padding="20dp">
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_weight="4"
+                app:srcCompat="?android:attr/listChoiceIndicatorMultiple" />
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_weight="4"
+                app:srcCompat="?android:attr/listChoiceIndicatorMultiple" />
+        </TableRow>
+    </TableLayout>
+
+
 
     <Button
         android:id="@+id/btnLogout"
@@ -52,7 +65,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton6"
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
@@ -67,16 +79,6 @@
         app:layout_constraintTop_toTopOf="@+id/btnLogout"
         app:srcCompat="@android:drawable/ic_menu_revert" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="125dp"
-        android:layout_height="113dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.849"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.846"
-        app:srcCompat="?android:attr/listChoiceIndicatorMultiple" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

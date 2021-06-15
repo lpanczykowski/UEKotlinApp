@@ -8,66 +8,66 @@
     android:paddingRight="8dp"
     tools:context=".ui.skan.SkanActivity">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="9dp"
-        android:text="Partia"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/divider3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider2"
-        app:layout_constraintVertical_bias="1.0" />
 
-    <View
-        android:id="@+id/divider3"
+    <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="40dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider2" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginLeft="96dp"
-        android:layout_marginBottom="9dp"
-        android:text="Ilość"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/divider3"
-        app:layout_constraintEnd_toStartOf="@+id/textView8"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider2"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_marginTop="13dp"
+        app:layout_constraintTop_toBottomOf="@+id/edtScan"
+        tools:layout_editor_absoluteX="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
 
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="11dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtScan" />
+        <TableRow
+            android:background="@color/teal_200"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tvIndex"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:text="Indeks"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:id="@+id/tvAmount"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Ilość"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvJM"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="JM"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvBatchNumber"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Nr partii"
+                android:textSize="15sp" />
+        </TableRow>
+
+    </TableLayout>
+
 
     <EditText
         android:id="@+id/edtScan"
-        android:layout_width="299dp"
+        android:layout_width="288dp"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="60dp"
         android:background="@color/teal_200"
+        android:cursorVisible="false"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:hint="Skanuj kod kreskowy"
@@ -93,7 +93,7 @@
         android:layout_height="43dp"
         android:layout_marginBottom="32dp"
         android:text="Tutaj naglowek zamowienia"
-        android:textSize="20dp"
+        android:textSize="35dp"
         app:layout_constraintBottom_toTopOf="@+id/edtScan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -101,28 +101,40 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvScan"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.562"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
-    <TextView
-        android:id="@+id/textView6"
+    <ImageButton
+        android:id="@+id/ibQR"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/edtScan"
+        app:layout_constraintTop_toTopOf="@+id/divider"
+        app:layout_constraintVertical_bias="0.25"
+        app:srcCompat="@drawable/icon" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnOk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="9dp"
-        android:text="Indeks"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/divider3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider2"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="?android:attr/textCheckMarkInverse" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
